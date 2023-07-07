@@ -129,20 +129,14 @@ class AnomalyDetector(Model):
     super(AnomalyDetector, self).__init__()
     self.encoder = tf.keras.Sequential([
       layers.Dense(X_train.shape[1], activation=None, input_shape=(X_train.shape[1],)),
-      layers.Dense(343, activation="swish"),
-      layers.Dropout(0.5),
-      layers.Dense(176, activation="swish"),
-      layers.Dense(74, activation="swish"),
-      layers.Dense(22, activation="swish"),
-      layers.Dense(2, activation="swish")])
+      layers.Dense(50, activation="relu"),
+      layers.Dense(25, activation="relu"),
+      layers.Dense(3, activation="relu")])
 
     self.decoder = tf.keras.Sequential([
-      layers.Dense(2, activation="swish"),
-      layers.Dense(22, activation="swish"),
-      layers.Dense(74, activation="swish"),
-      layers.Dense(176, activation="swish"),
-      layers.Dropout(0.5),
-      layers.Dense(343, activation="swish"),
+      layers.Dense(3, activation="relu"),
+      layers.Dense(25, activation="relu"),
+      layers.Dense(50, activation="relu"),
       layers.Dense(X_train.shape[1], activation=None)]) # N° of neurons = X's columns
 
   def call(self, x):
@@ -161,7 +155,7 @@ import keras
 
 history = autoencoder.fit(X_train, X_train, 
           epochs=1, 
-          batch_size=2048,
+          batch_size=1024,
           validation_data=(X_val, X_val, weight_val), 
           sample_weight=weight_train,
           callbacks=[keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True)],
@@ -191,7 +185,7 @@ for feature, mean, std in zip(X_train.columns,X_train.mean(0), X_train.std(0)):
 
 history = autoencoder.fit(X_train, X_train, 
           epochs=100, 
-          batch_size=2048,
+          batch_size=1024,
           validation_data=(X_val, X_val, weight_val), 
           sample_weight=weight_train,
           callbacks=[keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True)],
@@ -201,8 +195,8 @@ history = autoencoder.fit(X_train, X_train,
 # PLOT HISTOGRAMS
 
 # DEFINE ENCODED AND DECODED DATA BY THE AUTOENCODER
-bg_test_tensor = tf.cast(bg_test, tf.float16).numpy()
-signals_test_tensor = tf.cast(signals_test, tf.float16).numpy()
+bg_test_tensor = tf.cast(bg_test, tf.float32).numpy()
+signals_test_tensor = tf.cast(signals_test, tf.float32).numpy()
 
 encoded_bg = autoencoder.encoder(bg_test_tensor).numpy()
 decoded_bg = autoencoder.decoder(encoded_bg).numpy()

@@ -1,3 +1,2 @@
-# AD-ATLAS
-Each script is documented to a certain extent except for "AE-OPTUNA.py"  which still needs improving.
-VAE coming soon.
+# ANOMALY DETECTION METHODS ON THE ATLAS EXPERIMENT
+You can find here the scripts for all the models trained and studied during this project.

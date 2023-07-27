@@ -41,8 +41,14 @@ bg = BG.loc[:,['normalisedCombinedWeight','MET', 'MET_Phi','jet_pt',
 
 bg_test = (bg.loc[bg['gen_split']=='test']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 bg_train = (bg.loc[bg['gen_split']=='train']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
+bg_val = (bg.loc[bg['gen_split']=='val']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 
 y_bg_test = (bg.loc[bg['gen_split']=='test'])['LABEL']
+y_bg_train = (bg.loc[bg['gen_split']=='train'])['LABEL']
+y_bg_val = (bg.loc[bg['gen_split']=='val'])['LABEL']
+
+W_bg_train = (bg.loc[bg['gen_split']=='train'])['train_weight']
+W_bg_val = (bg.loc[bg['gen_split']=='val'])['train_weight']
 
 nCW_bg = (bg.loc[bg['gen_split']=='test'])['normalisedCombinedWeight']
 
@@ -58,8 +64,14 @@ s_1 = s1.loc[:,['normalisedCombinedWeight','MET', 'MET_Phi','jet_pt',
 
 s1_test = (s_1.loc[s_1['gen_split']=='test']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 s1_train = (s_1.loc[s_1['gen_split']=='train']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
+s1_val = (s_1.loc[s_1['gen_split']=='val']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 
 y_s1_test = (s_1.loc[s_1['gen_split']=='test'])['LABEL']
+y_s1_train = (s_1.loc[s_1['gen_split']=='train'])['LABEL']
+y_s1_val = (s_1.loc[s_1['gen_split']=='val'])['LABEL']
+
+W_s1_train = (s_1.loc[s_1['gen_split']=='train'])['train_weight']
+W_s1_val = (s_1.loc[s_1['gen_split']=='val'])['train_weight']
 
 nCW_s1 = (s_1.loc[s_1['gen_split']=='test'])['normalisedCombinedWeight']
 
@@ -75,8 +87,14 @@ s_2 = s2.loc[:,['normalisedCombinedWeight','MET', 'MET_Phi','jet_pt',
 
 s2_test = (s_2.loc[s_2['gen_split']=='test']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 s2_train = (s_2.loc[s_2['gen_split']=='train']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
+s2_val = (s_2.loc[s_2['gen_split']=='val']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 
 y_s2_test = (s_2.loc[s_2['gen_split']=='test'])['LABEL']
+y_s2_train = (s_2.loc[s_2['gen_split']=='train'])['LABEL']
+y_s2_val = (s_2.loc[s_2['gen_split']=='val'])['LABEL']
+
+W_s2_train = (s_2.loc[s_2['gen_split']=='train'])['train_weight']
+W_s2_val = (s_2.loc[s_2['gen_split']=='val'])['train_weight']
 
 nCW_s2 = (s_2.loc[s_2['gen_split']=='test'])['normalisedCombinedWeight']
 
@@ -92,8 +110,14 @@ s_3 = s3.loc[:,['normalisedCombinedWeight','MET', 'MET_Phi','jet_pt',
 
 s3_test = (s_3.loc[s_3['gen_split']=='test']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 s3_train = (s_3.loc[s_3['gen_split']=='train']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
+s3_val = (s_3.loc[s_3['gen_split']=='val']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 
 y_s3_test = (s_3.loc[s_3['gen_split']=='test'])['LABEL']
+y_s3_train = (s_3.loc[s_3['gen_split']=='train'])['LABEL']
+y_s3_val = (s_3.loc[s_3['gen_split']=='val'])['LABEL']
+
+W_s3_train = (s_3.loc[s_3['gen_split']=='train'])['train_weight']
+W_s3_val = (s_3.loc[s_3['gen_split']=='val'])['train_weight']
 
 nCW_s3 = (s_3.loc[s_3['gen_split']=='test'])['normalisedCombinedWeight']
 
@@ -109,8 +133,14 @@ s_4 = s4.loc[:,['normalisedCombinedWeight','MET', 'MET_Phi','jet_pt',
 
 s4_test = (s_4.loc[s_4['gen_split']=='test']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 s4_train = (s_4.loc[s_4['gen_split']=='train']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
+s4_val = (s_4.loc[s_4['gen_split']=='val']).drop(columns=['normalisedCombinedWeight','gen_split','train_weight','LABEL'])
 
 y_s4_test = (s_4.loc[s_4['gen_split']=='test'])['LABEL']
+y_s4_train = (s_4.loc[s_4['gen_split']=='train'])['LABEL']
+y_s4_val = (s_4.loc[s_4['gen_split']=='val'])['LABEL']
+
+W_s4_train = (s_4.loc[s_4['gen_split']=='train'])['train_weight']
+W_s4_val = (s_4.loc[s_4['gen_split']=='val'])['train_weight']
 
 nCW_s4 = (s_4.loc[s_4['gen_split']=='test'])['normalisedCombinedWeight']
 
@@ -121,22 +151,42 @@ nCW_s4 = (s_4.loc[s_4['gen_split']=='test'])['normalisedCombinedWeight']
 
 X_test_1 = pd.concat([s1_test,bg_test],ignore_index=True)
 X_train_1 = pd.concat([s1_train,bg_train],ignore_index=True)
+X_val_1 = pd.concat([s1_val,bg_val],ignore_index=True)
+y_train_1 = pd.concat([y_s1_train,y_bg_train],ignore_index=True)
+y_val_1 = pd.concat([y_s1_val,y_bg_val],ignore_index=True)
 y_test_1 = pd.concat([y_s1_test,y_bg_test],ignore_index=True)
+W_train_1 = pd.concat([W_s1_train,W_bg_train],ignore_index=True)
+W_val_1 = pd.concat([W_s1_val,W_bg_val],ignore_index=True)
 nCW_1 = pd.concat([nCW_s1,nCW_bg],ignore_index=True)
 
 X_test_2 = pd.concat([s2_test,bg_test],ignore_index=True)
 X_train_2 = pd.concat([s2_train,bg_train],ignore_index=True)
+X_val_2 = pd.concat([s2_val,bg_val],ignore_index=True)
+y_train_2 = pd.concat([y_s2_train,y_bg_train],ignore_index=True)
+y_val_2 = pd.concat([y_s2_val,y_bg_val],ignore_index=True)
 y_test_2 = pd.concat([y_s2_test,y_bg_test],ignore_index=True)
+W_train_2 = pd.concat([W_s2_train,W_bg_train],ignore_index=True)
+W_val_2 = pd.concat([W_s2_val,W_bg_val],ignore_index=True)
 nCW_2 = pd.concat([nCW_s2,nCW_bg],ignore_index=True)
 
 X_test_3 = pd.concat([s3_test,bg_test],ignore_index=True)
 X_train_3 = pd.concat([s3_train,bg_train],ignore_index=True)
+X_val_3 = pd.concat([s3_val,bg_val],ignore_index=True)
+y_train_3 = pd.concat([y_s3_train,y_bg_train],ignore_index=True)
+y_val_3 = pd.concat([y_s3_val,y_bg_val],ignore_index=True)
 y_test_3 = pd.concat([y_s3_test,y_bg_test],ignore_index=True)
+W_train_3 = pd.concat([W_s3_train,W_bg_train],ignore_index=True)
+W_val_3 = pd.concat([W_s3_val,W_bg_val],ignore_index=True)
 nCW_3 = pd.concat([nCW_s3,nCW_bg],ignore_index=True)
 
 X_test_4 = pd.concat([s4_test,bg_test],ignore_index=True)
 X_train_4 = pd.concat([s4_train,bg_train],ignore_index=True)
+X_val_4 = pd.concat([s4_val,bg_val],ignore_index=True)
+y_train_4 = pd.concat([y_s4_train,y_bg_train],ignore_index=True)
+y_val_4 = pd.concat([y_s4_val,y_bg_val],ignore_index=True)
 y_test_4 = pd.concat([y_s4_test,y_bg_test],ignore_index=True)
+W_train_4 = pd.concat([W_s4_train,W_bg_train],ignore_index=True)
+W_val_4 = pd.concat([W_s4_val,W_bg_val],ignore_index=True)
 nCW_4 = pd.concat([nCW_s4,nCW_bg],ignore_index=True)
 
 

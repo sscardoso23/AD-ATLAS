@@ -234,6 +234,7 @@ with open('IF1 - HVT_Agv1_VzZH_vvqq_m1000.txt', 'w') as f:
 # MODEL SCORE
 #------------
 
+density=True
 
 plt.hist(preds1[y_1 == 0],
          color='b', alpha=0.5, 

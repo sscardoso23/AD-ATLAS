@@ -294,32 +294,33 @@ with open('IF2 - HVT_Agv1_VzZH_vvqq_m1000.txt', 'w') as f:
 # MODELS' SCORES
 #---------------
 
+density=True
 
 plt.hist(preds1[y_1 == 0],
          color='b', alpha=0.5, 
          bins=100,
          histtype='stepfilled', density=density,
-         label='Background', weights=nCW_bg)
+         label='Background', weights=nCW_bg_test)
 plt.hist(preds1[y_1 == 1],
          color='r', alpha=0.5,
          bins=100,
          histtype='step', density=density,
-         label='ResmMed4000mX1lb0p2yp0p4', weights=nCW_s1)
+         label='ResmMed4000mX1lb0p2yp0p4', weights=nCW_s1_test)
 plt.hist(preds2[y_2 == 1],
          color='g', alpha=0.5,
          bins=100,
          histtype='step', density=density,
-         label='bbA2000_yb2_Zhvvbb', weights=np.absolute(nCW_s2))
+         label='bbA2000_yb2_Zhvvbb', weights=np.absolute(nCW_s2_test))
 plt.hist(preds3[y_3 == 1],
          color='y', alpha=0.5,
          bins=100,
          histtype='step', density=density,
-         label='GG_direct_2000_0', weights=nCW_s3)
+         label='GG_direct_2000_0', weights=nCW_s3_test)
 plt.hist(preds4[y_4 == 1],
          color='k', alpha=0.5,
          bins=100,
          histtype='step', density=density,
-         label='HVT_Agv1_VzZH_vvqq_m1000', weights=nCW_s4)
+         label='HVT_Agv1_VzZH_vvqq_m1000', weights=nCW_s4_test)
 
 plt.legend()
 plt.xlabel('Anomaly Score')
